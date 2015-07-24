@@ -3,22 +3,49 @@ SNAC Web
 ========
 
 
-Setup
------
+    
 
-Installing all build dependencies for pillow is probably overkill. ::
 
+
+Python 2.7 Virtualenv
+---------------------
+
+Installing all build dependencies for pillow is probably overkill.  As is we
+are also missing OPENJPEG (JPEG2000) support.
+
+Apache. ::
+
+    $ sudo apt-get install apache2
+
+Python. ::
+
+    $ sudo apt-get install virtualenv
     $ sudo apt-get build-dep pillow
     $ virtualenv virtualenv
     $ source virtualenv/bin/activate
+
+Pip. ::
+
     $ pip install -r requirements.txt
+
+NPM and Bower. ::
+
+    $ sudo apt-get install npm nodejs-legacy
+    $ sudo npm install -g bower
+    
+Test server. ::
+
     $ ./manage bower install
     $ ./manage migrate
     $ ./manage runserver
 
+Gulp is also in there, but its mostly for development at this stage.
 
-NPM
 
-    
+Python 3 Pyvenv
+---------------
+
+Not quite there yet.
+
 
 
