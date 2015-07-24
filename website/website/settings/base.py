@@ -100,7 +100,7 @@ USE_TZ = True
 # STATIC
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '../static')
+STATIC_ROOT = os.path.join(BASE_DIR, '../../static')
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -112,7 +112,7 @@ STATICFILES_FINDERS = (
 # MEDIA
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
 
 # django-filer / django-thumbnails
 
