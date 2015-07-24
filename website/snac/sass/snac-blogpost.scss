@@ -1,0 +1,18 @@
+
+
+
+section.snac-blogpost {
+
+    article {
+        margin: 1em 0em;
+        padding: 1em;
+        background-color: $blogpost-background-color;
+        border-radius: $base-border-radius;
+    }
+
+    p.snac-blogpost-age {
+        float: right;
+    }
+
+}
+

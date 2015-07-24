@@ -1,0 +1,23 @@
+{% extends "snac/base.html" %}
+
+{% block head-title %}
+<title>SNAC: {{ flatpage.title }}</title>
+{% endblock %}
+
+{% block body-content %}
+    <section>
+        {{ flatpage.content }}
+    </section>
+<section >
+    <h2>Contact Us</h2>
+    <p>Do we need a map here? Opening Hours. feedback form. About us.</p>
+    <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name" class="input" placeholder="Gimmie ur Name" />
+    <label for="email">Email:</label>
+    <input type="email" id="email" class="input" placeholder="Gimmie ur Email" />
+    <input type="submit" class='btn' value="Submit Form" />
+    </form>
+</section>
+{% endblock %}
+

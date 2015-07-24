@@ -1,0 +1,88 @@
+
+
+
+
+section.snac-service {
+}
+
+
+/* list */
+
+div.snac-service-list { // flex box to layout a bunch of images.
+    //width: 100%;
+    // border: 2px solid green;
+
+    //padding: 5px 0px;
+
+    a { // make href fill div.
+        display:block;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+
+
+.flexbox .snac-service-list {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+}
+
+// what to do if we don't have it.
+.no-flexbox .snac-service-list {
+
+    // border: solid 1px red;
+
+    &:after {
+        content:'';
+        display:block;
+        clear: both;
+    }
+}    
+
+
+/* itme */
+
+
+.snac-service-item { // simple thumnail and link.
+    position: relative;
+    overflow: hidden;
+    //border: 1px solid black;
+    margin: 5px;
+
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    width: 200px;
+    height: 200px;
+
+    &:hover {
+        box-shadow: 0px 0px 10px #333;
+        transform: scale(1.01); // horrible, but fun that it works.
+    }
+}
+
+
+.flexbox .snac-service-item {
+    //@include flex(1 0 auto);   /* don't grow, shrink uniformly */
+    border-radius: $base-border-radius;
+}
+
+.no-flexbox .snac-service-item {
+    float: left;
+}
+
+
+/* title */
+
+.snac-service-title {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: $service-backing-color;
+    text-align:center;
+    margin:0;
+}

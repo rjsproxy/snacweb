@@ -1,0 +1,13 @@
+Django==1.8.2
+Pillow==2.8.2
+argparse==1.2.1
+django-appconf==1.0.1
+django-bower==5.0.4
+django-ckeditor==4.4.8
+django-contact-form==1.0
+django-libsass==0.3
+libsass==0.8.2
+pytz==2015.4
+six==1.9.0
+sorl-thumbnail==12.2
+wsgiref==0.1.2

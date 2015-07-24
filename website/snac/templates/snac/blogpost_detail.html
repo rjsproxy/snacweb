@@ -1,0 +1,12 @@
+{% extends "snac/base.html" %}
+
+{% block head-title %}
+<title>SNAC: {{ blogpost.title }}</title>
+{% endblock %}
+
+{% block body-content %}
+<section>
+    {{ blogpost.content|safe }}
+</section>
+{% endblock %}
+

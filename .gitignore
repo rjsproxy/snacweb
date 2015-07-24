@@ -1,0 +1,12 @@
+/node_modules/
+/virtualenv/
+/media/
+/static/
+/website/db.sqlite3
+/website/components/
+/website/website/settings/local.py
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

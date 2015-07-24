@@ -1,0 +1,11 @@
+{% extends "snac/base.html" %}
+
+{% block head-title %}
+<title>SNAC: {{ service.title }}</title>
+{% endblock %}
+
+{% block body-content %}
+    <section>
+        {{ service.description|safe }}
+    </section>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+/**
+* 2015-06-25: (RJS) Both html and body need to be 100% for sections to flex and
+* fill space. Available.
+*
+* https://github.com/philipwalton/solved-by-flexbox/ suggests using % instead
+* of vh due to bugs on IE (10,11) and older mobile Safari.  Also suggests
+* explicitly setting flex-shrink to zero.
+*/
+
+html {
+    height:100%;
+}
+
+body {
+    height: 100%;
+}
+
+.flexbox body {
+    @include display(flex);
+    @include flex-direction(column);
+}
+
+/* Prevent header and footer from flexing. */
+
+.flexbox header, footer {
+    @include flex(0 0 auto);
+}
+
+/* Flex content to fill available space. */
+
+.flexbox section {
+    @include flex(1 0 auto);
+}
+
