@@ -5,6 +5,7 @@
 // browser sync : http://www.browsersync.io/docs/options/
 
 var gulp = require('gulp');
+var shell = require('gulp-shell')
 var $ = require('gulp-load-plugins')();
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
@@ -40,6 +41,9 @@ gulp.task('sass', function () {
         ]))
         .pipe($.sourcemaps.write())
         .pipe(gulp.dest('website/snac/static/snac/css'))
+        .pipe(shell([
+            'virtualenv/bin/python website/manage.py collectstatic --noinput'
+        ]))
         .pipe(reload({stream: true}));
 });
 
@@ -51,8 +55,9 @@ gulp.task('default', ['sass'], function() {
 
     browserSync.init({
         notify: false,
-        proxy: '203.28.246.145:9898',
+        //proxy: '203.28.246.145:9898',
         //proxy: '127.0.0.1:8000',
+        proxy: '203.28.247.201:2000',
         //proxy: '192.168.100.9:8000',
     });
 

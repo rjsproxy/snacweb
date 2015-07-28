@@ -1,5 +1,17 @@
 
 
+setup on new host
+-----------------
+
+$ npm install
+$ node_modules/.bin/gulp
+
+
+
+
+original setup
+--------------
+
 
 
 

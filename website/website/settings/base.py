@@ -97,7 +97,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-# STATIC
+# STATI#C
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../../static')
@@ -106,7 +106,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'djangobower.finders.BowerFinder',
-    'compressor.finders.CompressorFinder',
+    #'compressor.finders.CompressorFinder',
 )
 
 # MEDIA
@@ -129,7 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
 
 # Asset Management
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../components')
 BOWER_INSTALLED_APPS = (
     'modernizr',
     'holderjs',
@@ -174,3 +174,47 @@ CKEDITOR_CONFIGS = {
 SITE_ID=1
 
 
+
+
+
+
+# LOGGING
+
+#LOGGING = {
+#    'version': 1,
+#    'disable_existing_loggers': False,
+#    'handlers': {
+#        'file': {
+#            'level': 'DEBUG',
+#            'class': 'logging.FileHandler',
+#            'filename': os.path.join(BASE_DIR, '../../log/django.log'),
+#        },
+#    },
+#    'loggers': {
+#        'django.request': {
+#            'handlers': ['file'],
+#            'level': 'DEBUG',
+#            'propagate': True,
+#        },
+#    },
+#}
+
+
+# Logging to stderr should end up in "/var/log/apache/error.log".
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            # 'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
