@@ -1,6 +1,12 @@
 
+/* 
 
-// Default header.
+Default Header.
+
+Header text is in a H1. Links to colleges and university are in a paragraph
+below.
+
+*/
 
 header {
     padding-top: 30px;
@@ -31,9 +37,15 @@ header {
     }
 }
 
+/*
 
-// Full view image.
-.snac-landing {
+Landing Header
+
+Full screen background image. Drop header to bottom.
+
+*/
+
+.flexbox .snac-landing {
     position: relative; // allow childrent to be absolute.
     min-height: 100vh; // fill display.
     background-color: $header-background-color;
@@ -45,7 +57,7 @@ header {
 }
 
 
-.snac-landing-title {
+.flexbox .snac-landing-title {
     position: absolute;
     left:0;
     right:0;

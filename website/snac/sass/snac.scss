@@ -29,6 +29,9 @@ $service-backing-color: #E9E9E9;
 
 
 
+.flexbox div.browserupgrade {
+    display: none;
+}
 
 @mixin outer-padding($padding: 5px) {
     padding-left: 5px; // pad off the edge.

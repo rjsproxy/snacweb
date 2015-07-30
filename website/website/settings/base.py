@@ -133,6 +133,8 @@ BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, '../components')
 BOWER_INSTALLED_APPS = (
     'modernizr',
     'holderjs',
+    'jquery',
+    'bootstrap-sass',
     #'html5shiv',  not sure if I need this... modernizr might cover.
 )
 

@@ -1,9 +1,6 @@
-
-
-
-
 section.snac-service {
 }
+
 
 
 /* list */
@@ -85,4 +82,52 @@ div.snac-service-list { // flex box to layout a bunch of images.
     background-color: $service-backing-color;
     text-align:center;
     margin:0;
+}
+
+
+
+
+/*
+
+Expected format is:
+
+    <ul>
+        <li style="background-image:url(/file.jpg);">
+            <a href="/service/internet-service/">Internet Service</a>
+        </li>
+        ...
+    </ul>
+
+*/
+
+.flexbox section.snac-service ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+}
+
+.flexbox section.snac-service li {
+    
+    height: 200px;
+    min-width: 200px;
+    @include flex(1);
+
+    //background-image: attr(data-image);
+    //background-image: url('/media/cache/71/25/712543babd1b29692f49cc9800afdc85.jpg');
+    background-image: attr(data-image);
+    // background-color: $service-backing-color;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.flexbox section.snac-service a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-align:center;
 }
