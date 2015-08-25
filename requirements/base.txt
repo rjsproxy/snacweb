@@ -1,13 +1,32 @@
-Django==1.8.2
-Pillow==2.8.2
-argparse==1.2.1
-django-appconf==1.0.1
-#django-bower==5.0.4
-django-ckeditor==4.4.8
-django-contact-form==1.0
-#django-libsass==0.3
-#libsass==0.8.2
-pytz==2015.4
-six==1.9.0
-sorl-thumbnail==12.2
-wsgiref==0.1.2
+
+# As of 2015-08-25 the following two requirements will pull down
+# 
+#     Django==1.8.4
+#     Pillow==2.9.0
+#     Unidecode==0.04.18
+#     Willow==0.2.1
+#     beautifulsoup4==4.4.0
+#     django-appconf==1.0.1
+#     django-compressor==1.5
+#     django-modelcluster==0.6.2
+#     django-taggit==0.17.0
+#     django-treebeard==3.0
+#     html5lib==0.999
+#     pytz==2015.4
+#     requests==2.7.0
+#     six==1.9.0
+#     wagtail==1.0
+
+Django
+
+#
+
+wagtail
+
+# 
+
+django-crispy-forms
+
+# Postgres
+
+psycopg2

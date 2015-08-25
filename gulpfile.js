@@ -22,7 +22,7 @@ var config = {
     staticPath: './static'
 }
 
-var sassfiles = 'website/snac/sass/*.scss';
+var sassfiles = 'website/layout/templates/*.scss';
 
 // RJS: investigate method to "notify" via browser?
 
@@ -53,6 +53,7 @@ gulp.task('fonts', function() { 
 gulp.task('js', function() {  
     return gulp.src([
             config.bowerPath + '/jquery/dist/jquery.js',
+            config.bowerPath + '/holderjs/holder.js',
             config.bowerPath + '/bootstrap-sass/assets/javascripts/bootstrap.js'
         ])
         .pipe(concat('snac.js'))
@@ -62,7 +63,7 @@ gulp.task('js', function() {
 // Convert Sass files to CSS.
 
 gulp.task('sass', function () {
-    return gulp.src('website/snac/sass/snacweb.scss')
+    return gulp.src('website/layout/templates/snac.scss')
         .pipe($.sourcemaps.init())
         .pipe($.sass({
             outputStyle: 'nested',

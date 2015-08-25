@@ -1,0 +1,44 @@
+{% load layout_tags static wagtailuserbar %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="St Mary's Newman Academic Centre">
+<meta name="author" content="Robert Shelton">
+{% block head-title %}
+<title>SNAC</title>
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/snac.css' %}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!--
+{ wagtailuserbar }     
+ -->
+
+{% block body-header %}
+{% include 'snac_header.html' %}
+{% endblock %}
+
+{% block body-navigation %}
+{% get_site_root as site_root %}                                                              
+{% top_menu parent=site_root calling_page=self %}                                             
+{% endblock %}
+
+
+{% block body-content %}
+{% endblock %}
+
+{% block body-footer %}
+<footer>
+    {% include 'snac_footer.html' %}
+</footer>
+{% endblock %}
+
+<script src="{% static 'js/snac.js' %}"></script>
+</body>
+</html>

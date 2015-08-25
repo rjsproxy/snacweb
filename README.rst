@@ -4,8 +4,15 @@ SNAC Web
 
 
     
+Python 3
+--------
 
+Looks like Wagtail and Python 3 are friends. ::
 
+    $ pyvenv venv
+    $ source venv/bin/activate
+    $ pip install wagtail
+    $ pip install psycopg2
 
 Python 2.7 Virtualenv
 ---------------------

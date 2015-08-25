@@ -1,13 +1,15 @@
 /node_modules/
 /virtualenv/
+/venv/
 /media/
 /static/
 /bower_components/
 /website/db.sqlite3
 /website/components/
-/website/website/settings/local.py
+/website/website/settings/__init__.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+db.sqlite3

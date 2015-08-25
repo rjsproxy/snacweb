@@ -1,0 +1,78 @@
+{% extends "snac/base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block body-header %}
+<div class="snac-landing-image">
+    <div class="snac-landing-header">
+        <div class="container">
+            <h1>
+                <a href="/">St Mary's Newman Academic Centre</a>
+                <small class="hidden-xs">
+                    <br>A partnership of
+                    <a href="//www.stmarys.unimelb.edu.au/">St Mary's College</a>
+                    and
+                    <a href="//www.newman.unimelb.edu.au/">Newman College</a>
+                    <br>In affiliation with 
+                    <a href="//www.unimelb.edu.au">The University of Melbourne</a>
+                </small>
+            </h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body-content %}
+
+{% if service_list %}
+<div class="container">
+    <h2>Services</h2>
+    <div class="row">
+        {% for service in service_list %}
+        <div class="col-xs-6 col-sm-5 col-md-3">
+            <a href="{{ service.get_absolute_url }}" class="thumbnail snac-remove-outline">
+                {% thumbnail service.icon "200x200" crop="center" as iconcrop %}
+                    <img src="{{ iconcrop.url }}" alt="{{ service.title }}">
+                {% empty %}
+                    <img data-src="holder.js/200x200" alt="{{ service.title }}">
+                {% endthumbnail %}
+                <div class="caption">
+                    <h3 class="text-center">{{ service.title }}</h3>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if blogpost_list %}
+<div class="container">
+    <h2>News</h2>
+    {% for blogpost in blogpost_list %}
+        <h3>{{ blogpost.title }}
+        <small>({{ blogpost.get_age_string }} ago)</small>
+        </h3>
+        <p>{{ blogpost.blurb }}</p>
+        <p class="snac-blogpost-link"><a href="{{ blogpost.get_absolute_url }}">Read more...</a></p>
+        <!--
+        <a class="btn btn-default" href="{{ blogpost.get_absolute_url }}" role="button">Read More</a>
+        -->
+    </article>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!--
+<div class="snac-spacing">
+</div>
+-->
+
+{% endblock %}
+
+
+{% block body-footer %}
+<footer>
+    {% include 'snac/snac_footer.html' %}
+</footer>
+{% endblock %}

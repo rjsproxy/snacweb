@@ -1,0 +1,81 @@
+// http://getbootstrap.com/customize/#less-variables
+
+//$body-bg: #000;
+
+@import '../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+html,
+body {
+    height: 100%;
+}
+
+// Remove border and showow.
+.snac-remove-outline {
+    border: 0 none;
+    box-shadow: none;
+}
+
+.snac-landing-image {
+    position: relative; // allow childrent to be absolute.
+    height: 100vh; // fill display.
+    background-image: url('/static/snac/images/040703_5205_2.jpg');
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.snac-landing-header {
+    position: absolute;
+    left:0;
+    right:0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.8);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+/* Wagtail Stream Flow Blocks */
+
+.block-heading {
+    @extend .container;
+}
+
+.block-paragraph {
+    @extend .container;
+}
+
+.block-image {
+    @extend .container;
+}
+
+.block-background {
+    @extend .jumbotron;
+    border: 0;
+    padding: 0;
+    img {
+        height: auto;
+        width: 100%;
+        max-height: 100vh;
+    }
+}
+
+img {
+    @extend .img-responsive;
+}
+
+img.right {
+    @extend .pull-right;
+}
+
+img.left {
+    @extend .pull-left;
+}
+
+div.responsive-object {
+    @extend .embed-responsive;
+    iframe {
+        @extend .embed-responsive-item;
+    }
+}
