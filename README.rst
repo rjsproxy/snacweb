@@ -56,3 +56,18 @@ Not quite there yet.
 
 
 
+Config
+------
+
+Create a file "website/website/settings/__init__.py" containing anything all
+the secrets. ::
+
+    SECRET_KEY = 'oneonewasaracehorsetwotwowasonetoooneonewononerace'
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+

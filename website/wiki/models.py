@@ -4,6 +4,7 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page
+from wagtail.wagtailcore.blocks import StructBlock, ListBlock, PageChooserBlock
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList
 
@@ -13,9 +14,34 @@ from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
 
 
+
+#class WikiIndexDisplayBlock(blocks.ChoiceBlock):
+#    choices = [
+#        ('text-list', 'Text List'),
+#        ('icon-list', 'Icon List'),
+#    ]
+#
+#    class Meta:
+#        icon = 'cup'
+
+
+
+
+class WikiPageLink(StructBlock):
+    """
+    Purpose: Combined with ListBlock this class allows editors to create a
+    gallery of links to pages.
+    """
+
+    page = PageChooserBlock()
+    icon = ImageChooserBlock()
+
+    class Meta:
+        icon = 'cup'
+
+
 class WikiPageTag(TaggedItemBase):
     content_object = ParentalKey('wiki.WikiPage', related_name='tagged_items')
-
 
 class WikiPage(Page):
     """
@@ -29,16 +55,17 @@ class WikiPage(Page):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('background', ImageChooserBlock()),
+        ('navigation', ListBlock(WikiPageLink)),
     ])
+
+    stream_panels = [
+        StreamFieldPanel('content'),
+    ]
 
     tags = ClusterTaggableManager(through=WikiPageTag, blank=True)
 
     promote_panels = Page.promote_panels + [
         FieldPanel('tags'),
-    ]
-
-    stream_panels = [
-        StreamFieldPanel('content'),
     ]
 
     edit_handler = TabbedInterface([
