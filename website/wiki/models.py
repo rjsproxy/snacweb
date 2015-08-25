@@ -38,6 +38,7 @@ class WikiPageLink(StructBlock):
 
     class Meta:
         icon = 'cup'
+        # template = 'wiki/blocks/wiki_page_link.html'
 
 
 class WikiPageTag(TaggedItemBase):
@@ -55,7 +56,7 @@ class WikiPage(Page):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
         ('background', ImageChooserBlock()),
-        ('navigation', ListBlock(WikiPageLink)),
+        ('navigation', ListBlock(WikiPageLink, template='wiki/blocks/wiki_page_list.html')),
     ])
 
     stream_panels = [

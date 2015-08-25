@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+<div class="container">
+{% if self %}
+{% for item in self %}
+<div class="col-xs-6 col-sm-4 col-md-3">
+<a href="{{ item.page.url }}" class="thumbnail" style="border: 0px;">
+{% image item.icon fill-300x200 %}
+<p style="text-align: center;">{{ item.page }}</p>
+</a>
+</div>
+{% endfor %}
+</div>
+{% endif %}

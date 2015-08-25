@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     # demo has search, home, blog, article.
     'layout',
     'wiki',
+    'form',
 )
 
 MIDDLEWARE_CLASSES = (
