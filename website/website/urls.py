@@ -6,11 +6,17 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
+from wiki.views import WikiPageEventView
+
 urlpatterns = [
     url(r'^django/', include(admin.site.urls)),
     url(r'^wagtail/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     #url(r'^search/$', 'search.views.search', name='search'),  #,  from demo, menu
+
+
+    url(r'^events/', WikiPageEventView),
+
     url(r'', include(wagtail_urls)),
 ]
 

@@ -1,15 +1,11 @@
-{% load wagtailcore_tags %}
-<html>
-<head>
-<title>{{ self.title }}</title>
-</head>
-<body>
-<h1>{{ self.title }}</h1>
-{{ self.intro|richtext }}
-<form action="{% pageurl self %}" method="POST">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit">
-</form>
-</body>
-</html>
+{% extends "base.html" %}
+{% load wagtailcore_tags crispy_forms_tags %}
+{% block body-content %}
+<div class="container">
+<p>{{ self.intro|richtext }}</p>
+<div class="well">
+{% crispy form self.helper %}
+</div>
+</div>
+{% endblock %}
+

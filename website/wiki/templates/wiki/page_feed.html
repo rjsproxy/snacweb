@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block body-content %}
+
+{% for c in content %}
+{{ c.content }}
+<hr>
+{% endfor %}
+
+
+<div class="pagination">
+<span class="step-links">
+{% if content.has_previous %}
+<a href="?page={{ content.previous_page_number }}">previous</a>
+{% endif %}
+
+<span class="current">
+Page {{ content.number }} of {{ content.paginator.num_pages }}.
+</span>
+
+{% if content.has_next %}
+<a href="?page={{ content.next_page_number }}">next</a>
+{% endif %}
+</span>
+</div>
+
+
+{% endblock %}
