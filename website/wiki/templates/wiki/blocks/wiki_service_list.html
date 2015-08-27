@@ -1,0 +1,13 @@
+{% load wagtailimages_tags %}
+<div class="container">
+{% if self %}
+{% for service in self %}
+<div class="col-xs-6 col-sm-4 col-md-3">
+<a href="{{ service.link }}" class="thumbnail" style="border: 0px;">
+{% image service.icon fill-300x200 %}
+<p style="text-align: center;">{{ service.name }}</p>
+</a>
+</div>
+{% endfor %}
+</div>
+{% endif %}
