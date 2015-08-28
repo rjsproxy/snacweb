@@ -1,0 +1,11 @@
+{% load wagtailimages_tags %}
+
+<div class="thumbnail">
+{% image self.image fill-300x200 %}
+<div class="caption text-center">
+<b>{{ self.title }}</b>
+{% if self.caption %}
+<p>{{ self.caption }}</p>
+{% endif %}
+</div>
+</div>

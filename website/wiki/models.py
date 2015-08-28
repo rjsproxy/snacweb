@@ -1,7 +1,6 @@
 from django.db import models
 
 
-from wagtail.wagtailcore import blocks
 from wagtail.wagtaildocs.blocks import DocumentChooserBlock
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.wagtailcore.fields import StreamField
@@ -95,7 +94,7 @@ class LinkBlock(StructBlock):
         template = 'wiki/blocks/link.html'
 
 
-class ThumbBlock(StructBlock):
+class ImageThumbBlock(StructBlock):
     """
     Field for creating a Bootstrap thumnail.
     """
@@ -110,29 +109,27 @@ class ThumbBlock(StructBlock):
     image = ImageChooserBlock(
         help_text='Image to show in thumbnail.',
     )
-    link = LinkBlock(
-        help_text='Link to associate with this Thumbnail.',
-    )
-
-
-
-    #panels = [
-    #    FieldPanel('title'),
-    #    FieldPanel('caption'),
-    #    blocks.ImageChooserPanel('image'),
-    #    MultiFieldPanel(LinkField.panels, 'link'),
-    #]
 
     class Meta:
-        #default =
-        icon = 'user'
-        #icon =
-        #template = 
-
-    def __unicode__(self):
-        return self.title
+        template = 'wiki/blocks/thumbnail_image.html'
 
 
+class PageThumbBlock(ImageThumbBlock):
+    page = blocks.PageChooserBlock()
+
+    class Meta:
+        template = 'wiki/blocks/thumbnail_page.html'
+
+
+class ColumnChoiceBlock(blocks.ChoiceBlock):
+
+    choices = [
+        (2, 'Two Columns'),
+        (3, 'Three Columns'),
+    ]
+
+    class Meta:
+        icon = 'cogs'
 
 
 class WikiPageLink(StructBlock):
@@ -161,7 +158,14 @@ class WikiPage(Page):
 
     content = StreamField([
         ('rich_text', blocks.RichTextBlock()),
-        ('thumbnails', ListBlock(ThumbBlock, template='wiki/blocks/thumbnail_list.html')),
+        ('row', blocks.StructBlock([
+            ('column_number', ColumnChoiceBlock()),
+            ('column_content', blocks.StreamBlock([
+                    ('image', ImageThumbBlock()),
+                    ('page', PageThumbBlock()),
+                ], template='wiki/blocks/thumbnail_stream.html')),
+            ], template='wiki/blocks/row_block.html'),
+        ),
         #('image', ImageChooserBlock()),
         #('service', ListBlock(SnippetChooserBlock(Service), template='wiki/blocks/wiki_service_list.html')),
         #('background', ImageChooserBlock()),

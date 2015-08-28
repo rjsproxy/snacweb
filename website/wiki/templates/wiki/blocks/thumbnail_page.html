@@ -1,0 +1,9 @@
+{% load wagtailimages_tags %}
+
+<a href="{{ self.page.url }}" class="thumbnail">
+{% image self.image fill-300x200 %}
+<div class="caption text-center">
+<b>{{ self.title }}</b>
+<p>{{ self.caption }}</p>
+</div>
+</a>
