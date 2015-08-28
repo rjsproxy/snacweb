@@ -1,0 +1,35 @@
+{% load wagtailimages_tags %}
+<div class="container">
+{% if self %}
+{% for thumbnail in self %}
+<div class="col-xs-6 col-sm-4 col-md-3">
+
+
+    {{ thumbnail.link }}
+
+    {% if thumnail.link.party %}
+    <p>yes we have a link</p>
+    {% else %}
+    <p>no link today</p>
+    {% endif %}
+
+<a href="{{ thumbnail.link }}" class="thumbnail" style="border: 0px;">
+{% if thumbnail.link.href %}
+{% endif %}
+
+{% image thumbnail.image fill-300x200 %}
+<p style="text-align: center;">{{ thumbnail.title }}</p>
+
+</a>
+{% if thumbnail.link.url %}
+{% endif %}
+
+X: {{ thumbnail.link.document }}<br>
+X: {{ thumbnail.link.page }}<br>
+X: {{ thumbnail.link.external }}<br>
+X: {{ thumbnail.link.url }}<br>
+
+</div>
+{% endfor %}
+</div>
+{% endif %}

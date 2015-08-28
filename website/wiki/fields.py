@@ -1,8 +1,8 @@
 from django.db import models
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, PageChooserPanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, PageChooserPanel, MultiFieldPanel
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
-
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 class LinkField(models.Model):
     
@@ -39,4 +39,6 @@ class LinkField(models.Model):
 
     class Meta:
         abstract = True
+
+
 

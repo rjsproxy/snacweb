@@ -1,6 +1,9 @@
 from django.db import models
 
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel
+
+from wagtail.wagtailcore import blocks
+from wagtail.wagtaildocs.blocks import DocumentChooserBlock
+from wagtail.wagtailadmin.edit_handlers import FieldPanel, StreamFieldPanel, PageChooserPanel
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page
@@ -10,15 +13,13 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, MultiFieldPanel
 #from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailsnippets.blocks import SnippetChooserBlock
-
-
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 
 from taggit.models import Tag, TaggedItemBase
-
 
 from .fields import LinkField
 
@@ -62,6 +63,77 @@ class Service(LinkField):
 
 
 
+class LinkBlock(StructBlock):
+
+    page = PageChooserBlock(
+        help_text='Link to page on this site.',
+        required=False,
+    )
+    document = DocumentChooserBlock(
+        help_text='Link to document on this site.',
+        required=False,
+    )
+    external = blocks.URLBlock(
+        help_text='Link to external URL.',
+        required=False,
+    )
+
+    @property
+    def url(self):
+        if self.page:
+            return self.page.url
+        elif self.document:
+            return self.document.url
+        else:
+            return self.external
+
+    def party(self):
+        return dir(self)
+        return "<p>Oh, yeah, party!</p>"
+
+    class Meta:
+        template = 'wiki/blocks/link.html'
+
+
+class ThumbBlock(StructBlock):
+    """
+    Field for creating a Bootstrap thumnail.
+    """
+
+    title = blocks.CharBlock(
+        help_text='Title for thumnail.'
+    )
+    caption = blocks.TextBlock(
+        help_text='Thumbnail description shown if space permits.',
+        required=False,
+    )
+    image = ImageChooserBlock(
+        help_text='Image to show in thumbnail.',
+    )
+    link = LinkBlock(
+        help_text='Link to associate with this Thumbnail.',
+    )
+
+
+
+    #panels = [
+    #    FieldPanel('title'),
+    #    FieldPanel('caption'),
+    #    blocks.ImageChooserPanel('image'),
+    #    MultiFieldPanel(LinkField.panels, 'link'),
+    #]
+
+    class Meta:
+        #default =
+        icon = 'user'
+        #icon =
+        #template = 
+
+    def __unicode__(self):
+        return self.title
+
+
+
 
 class WikiPageLink(StructBlock):
     """
@@ -88,13 +160,13 @@ class WikiPage(Page):
     """
 
     content = StreamField([
-        ('heading', blocks.CharBlock()),
-        ('paragraph', blocks.RichTextBlock()),
-        ('image', ImageChooserBlock()),
-        ('service', ListBlock(SnippetChooserBlock(Service), template='wiki/blocks/wiki_service_list.html')),
-        ('background', ImageChooserBlock()),
-        ('navigation', ListBlock(WikiPageLink, template='wiki/blocks/wiki_page_list.html')),  # pageiconlist
-        ('page_feed', PageChooserBlock(template='wiki/blocks/wiki_page_feed.html')),
+        ('rich_text', blocks.RichTextBlock()),
+        ('thumbnails', ListBlock(ThumbBlock, template='wiki/blocks/thumbnail_list.html')),
+        #('image', ImageChooserBlock()),
+        #('service', ListBlock(SnippetChooserBlock(Service), template='wiki/blocks/wiki_service_list.html')),
+        #('background', ImageChooserBlock()),
+        #('navigation', ListBlock(WikiPageLink, template='wiki/blocks/wiki_page_list.html')),  # pageiconlist
+        #('page_feed', PageChooserBlock(template='wiki/blocks/wiki_page_feed.html')),
     ])
 
     stream_panels = [
