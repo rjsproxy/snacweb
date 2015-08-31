@@ -40,3 +40,22 @@ def WikiPageTagView(request, tag_list=[]):
 
 
 
+
+
+def WikiPageNewsView(request):
+    page_list = WikiPage.objects.filter(show_in_news=True)
+    paginator = Paginator(page_list, 3)
+    page = request.GET.get('page')
+
+    try:
+        page_list = paginator.page(page)
+    except EmptyPage:
+        page_list = paginator.page(paginator.num_pages)
+    except:
+        page_list = paginator.page(1)
+
+    return render(request, 'wiki/news_feed.html', {'page_list': page_list})
+
+
+
+
