@@ -1,0 +1,62 @@
+// http://getbootstrap.com/customize/#less-variables
+
+//$body-bg: #000;
+
+@import '../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+html,
+body {
+    height: 100%;
+}
+
+@import 'home.scss'
+
+/* Wagtail Stream Flow Blocks */
+
+.block-heading {
+    @extend .container;
+}
+
+.block-paragraph {
+    @extend .container;
+}
+
+.block-image {
+    @extend .container;
+}
+
+.block-thumbnail {
+    @extend .container;
+}
+
+
+.block-background {
+    @extend .jumbotron;
+    border: 0;
+    padding: 0;
+    img {
+        height: auto;
+        width: 100%;
+        max-height: 100vh;
+    }
+}
+
+img {
+    @extend .img-responsive;
+}
+
+img.right {
+    @extend .pull-right;
+}
+
+img.left {
+    @extend .pull-left;
+}
+
+div.responsive-object {
+    @extend .embed-responsive;
+    iframe {
+        @extend .embed-responsive-item;
+    }
+}
+

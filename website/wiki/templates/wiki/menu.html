@@ -1,5 +1,5 @@
-{% load layout_tags wagtailcore_tags %}
-{% get_site_root as site_root %}
+{% load wiki_tags wagtailcore_tags %}
+{% wiki_root as site_root %}
 
 <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -19,8 +19,8 @@
                 {% for menuitem in menuitems %}
                     <li class="{% if menuitem.show_dropdown %}dropdown{% endif %}{% if menuitem.active %} active{% endif %}">
                         {% if menuitem.show_dropdown %}
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ menuitem.title }} <b class="caret"></b></a>
-                            {% top_menu_children parent=menuitem %}
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">{{ menuitem.title }}</b></a>
+                            {% wiki_menu_children parent=menuitem %}
                         {% else %}
                             <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
                         {% endif %}

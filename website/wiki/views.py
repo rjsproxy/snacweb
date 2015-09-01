@@ -41,6 +41,10 @@ def WikiPageTagView(request, tag_list=[]):
 
 
 
+def WikiPageHomeView(request):
+    return render(request, 'wiki/home.html')
+
+
 
 def WikiPageNewsView(request):
     page_list = WikiPage.objects.filter(show_in_news=True)
@@ -54,7 +58,7 @@ def WikiPageNewsView(request):
     except:
         page_list = paginator.page(1)
 
-    return render(request, 'wiki/news_feed.html', {'page_list': page_list})
+    return render(request, 'wiki/news.html', {'page_list': page_list})
 
 
 

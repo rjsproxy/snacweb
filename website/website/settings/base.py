@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     # 
     'crispy_forms',
     # demo has search, home, blog, article.
-    'layout',
+    # 'layout', rolled site-wide things into wiki
     'wiki',
     'form',
 )
@@ -99,9 +99,9 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-STATICFILES_DIRS = (
-    os.path.join(SITE_DIR, 'static'),
-)
+#STATICFILES_DIRS = (
+#    os.path.join(SITE_DIR, 'static'),
+#)
 
 STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 STATIC_URL = '/static/'

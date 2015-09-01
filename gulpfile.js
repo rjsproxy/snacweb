@@ -22,7 +22,7 @@ var config = {
     staticPath: './static'
 }
 
-var sassfiles = 'website/layout/templates/*.scss';
+var sassfiles = 'website/wiki/templates/wiki/base.scss';
 
 // RJS: investigate method to "notify" via browser?
 
@@ -57,13 +57,15 @@ gulp.task('js', function() {
             config.bowerPath + '/bootstrap-sass/assets/javascripts/bootstrap.js'
         ])
         .pipe(concat('snac.js'))
-        .pipe(gulp.dest(config.staticPath + '/js'))
+        .pipe(gulp.dest(config.staticPath))
 });
 
 // Convert Sass files to CSS.
 
 gulp.task('sass', function () {
-    return gulp.src('website/layout/templates/snac.scss')
+    return gulp.src([
+            'website/wiki/templates/wiki/base.scss',
+        ])
         .pipe($.sourcemaps.init())
         .pipe($.sass({
             outputStyle: 'nested',
@@ -76,7 +78,7 @@ gulp.task('sass', function () {
             require('autoprefixer-core')({browsers: ['last 2 version']})
         ]))
         .pipe($.sourcemaps.write())
-        .pipe(gulp.dest(config.staticPath + '/css'))
+        .pipe(gulp.dest(config.staticPath + '/wiki'))
         //.pipe(shell([
         //    'virtualenv/bin/python website/manage.py collectstatic --noinput'
         //]))
@@ -111,15 +113,15 @@ gulp.task('default', ['sass'], function() {
     browserSync.init({
         notify: false,
         //proxy: '203.28.246.145:9898',
-        //proxy: '127.0.0.1:8000',
-        proxy: '203.28.247.201:2000',
+        proxy: '127.0.0.1:3002',
+        //proxy: 'charlie.snac.unimelb.edu.au:3002',
         //proxy: '192.168.100.9:8000',
     });
 
     gulp.watch([
-        'website/snac/static/snac/css/snac.css',
-        'website/snac/templates/*/*.html',
-        'website/snac/static/snac/js/*.js'
+        'website/wiki/templates/wiki/*.scss',
+        'website/wiki/templates/wiki/*.html',
+        //'website/snac/static/snac/js/*.js'
     ]).on('change', reload);
 
     // Watch the sassfiles and run sass job on change.
