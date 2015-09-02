@@ -2,6 +2,9 @@
 SNAC Web
 ========
 
+Todo:
+
+- Add scss-lint to gulp chain.
 
     
 Python 3

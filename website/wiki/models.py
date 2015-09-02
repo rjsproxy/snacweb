@@ -5,11 +5,31 @@ from wagtail.wagtailadmin.edit_handlers import TabbedInterface, ObjectList, Mult
 from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 
 from taggit.models import TaggedItemBase
+
+
+
+
+
+#class WikiPageFeedBlock(blocks.StructBlock):
+#
+#    page = blocks.PageChooserBlock(
+#        help_text = 'Page to generate freed from.'
+#    )
+#
+#    class Meta:
+#        icon = 'user'
+#        label = 'Page Feed'
+#        # template=''
+
+
+
+
 
 class WikiPageTag(TaggedItemBase):
     content_object = ParentalKey('wiki.WikiPage', related_name='tagged_items')
@@ -21,8 +41,27 @@ class WikiPage(Page):
     way to describe it.
     """
 
+    blurb = models.TextField(
+        help_text='Short description of the page.',
+    )
+    icon = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    heading_panels = Page.content_panels + [
+        FieldPanel('blurb'),
+        ImageChooserPanel('icon'),
+    ]
+
     content = StreamField([
-        ('rich_text', blocks.RichTextBlock()),
+        ('rich_text', blocks.RichTextBlock(label='Rich Text')),
+        ('news_feed', blocks.StructBlock([
+            ('root_page', blocks.PageChooserBlock(label='Root Page')),
+        ],label='News Feed',template='wiki/blocks/news_feed.html')),
     ])
 
     stream_panels = [
@@ -41,12 +80,14 @@ class WikiPage(Page):
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(Page.content_panels, heading='Heading'),
+        ObjectList(heading_panels, heading='Heading'),
         ObjectList(stream_panels, heading='Content'),
         ObjectList(promote_panels, heading='Promote'),
         ObjectList(Page.settings_panels, heading='Settings', classname='settings'),
     ])
 
+    class Meta:
+        verbose_name = 'Wiki Page'
 
 
 

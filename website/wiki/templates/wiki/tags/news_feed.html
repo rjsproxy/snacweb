@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+{% for page in page_list %}
+<div class="media">
+<div class="media-left">
+        {% image page.icon fill-64x64 class="media-object img-rounded" %}
+</div>
+<div class="media-body">
+    <h2 class="media-heading">{{ page.title }}</h4>
+    <p><small>{{ page.first_published_at }}</small></p>
+    <p>{{ page.blurb }}</p>
+    <p><a href="{{ page.url }}">Read More</a></p>
+</div>
+</div>
+
+{% endfor %}
+

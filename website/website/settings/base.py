@@ -111,7 +111,7 @@ MEDIA_URL = '/media/'
 
 # Wagtail Settings.
 
-WAGTAIL_SITE_NAME = "snac"
+WAGTAIL_SITE_NAME = "SNAC"
 
 # Crispy Forms.
 

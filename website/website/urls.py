@@ -15,10 +15,10 @@ urlpatterns = [
     #url(r'^search/$', 'search.views.search', name='search'),  #,  from demo, menu
 
     url(r'^$', WikiPageHomeView),
-    url(r'^news/', WikiPageNewsView),
+    #url(r'^news/', WikiPageNewsView),
 
-    url(r'^events/', WikiPageEventView),
-    url(r'^tags/', WikiPageTagView, {'tag_list': ['service']}),
+    #url(r'^events/', WikiPageEventView),
+    #url(r'^tags/', WikiPageTagView, {'tag_list': ['service']}),
 
     url(r'', include(wagtail_urls)),
 ]

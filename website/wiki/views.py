@@ -4,7 +4,6 @@ from django.db.models import Q
 
 from .models import WikiPage
 
-
 # generate page feed/list by url/tag.
 
 from django.template.response import TemplateResponse

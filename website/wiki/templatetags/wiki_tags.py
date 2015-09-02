@@ -1,4 +1,7 @@
 from django import template
+from django.core.paginator import Paginator
+
+from wiki.models import WikiPage
 
 register = template.Library()
 
@@ -59,4 +62,20 @@ def wiki_menu_children(context, parent):
 
 
 
+@register.inclusion_tag('wiki/tags/news_feed.html')
+def news_feed(root_page, feed_items=20, feed_index=1):
+    page_list = WikiPage.objects.live().filter(show_in_news=True).descendant_of(root_page).order_by('-first_published_at')
+    paginator = Paginator(page_list, feed_items)
+
+    try:
+        page_list = paginator.page(feed_index)
+    except EmptyPage:
+        page_list = paginator.page(paginator.num_pages)
+    except:
+        page_list = paginator.page(1)
+
+    return {
+        'page_list': page_list,
+        #'request': context['request'],
+    }
 
