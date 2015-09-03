@@ -58,10 +58,14 @@ class WikiPage(Page):
     ]
 
     content = StreamField([
-        ('rich_text', blocks.RichTextBlock(label='Rich Text')),
-        ('news_feed', blocks.StructBlock([
-            ('root_page', blocks.PageChooserBlock(label='Root Page')),
-        ],label='News Feed',template='wiki/blocks/news_feed.html')),
+        ('container', blocks.StreamBlock([
+            ('rich_text', blocks.RichTextBlock(
+                label='Rich Text')),
+            ('news_feed', blocks.PageChooserBlock(
+                label='News Feed',
+                template='wiki/blocks/news_feed.html')),
+        #], template='wiki/blocks/container.html')),
+        ])),
     ])
 
     stream_panels = [

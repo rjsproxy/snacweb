@@ -9,36 +9,23 @@ body {
     height: 100%;
 }
 
-@import 'home.scss'
 
-/* Wagtail Stream Flow Blocks */
 
-.block-heading {
-    @extend .container;
+
+/* Landing Page Style */
+
+@import 'home.scss';
+
+
+/* Wagtail Bootstrap Integration */
+
+.page-header {
+    // @extend .text-right;
+    margin-top: 70px;
 }
 
-.block-paragraph {
+.block-container {
     @extend .container;
-}
-
-.block-image {
-    @extend .container;
-}
-
-.block-thumbnail {
-    @extend .container;
-}
-
-
-.block-background {
-    @extend .jumbotron;
-    border: 0;
-    padding: 0;
-    img {
-        height: auto;
-        width: 100%;
-        max-height: 100vh;
-    }
 }
 
 img {
