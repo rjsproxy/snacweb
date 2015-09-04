@@ -13,7 +13,7 @@ from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 
-
+from .blocks import CodeBlock, MarkDownBlock
 
 
 #class WikiPageFeedBlock(blocks.StructBlock):
@@ -64,6 +64,8 @@ class WikiPage(Page):
             ('news_feed', blocks.PageChooserBlock(
                 label='News Feed',
                 template='wiki/blocks/news_feed.html')),
+            ('markdown', MarkDownBlock()),
+            ('code_block', CodeBlock()),
         #], template='wiki/blocks/container.html')),
         ])),
     ])

@@ -30,3 +30,9 @@ django-crispy-forms
 # Postgres
 
 psycopg2
+
+
+# wiki/blocks uses pygments for source highlighting and markdown.
+
+Pygments
+Markdown
