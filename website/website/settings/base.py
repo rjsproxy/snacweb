@@ -94,8 +94,10 @@ USE_TZ = True
 # Static Files (wagtail defaults).
 
 STATICFILES_FINDERS = (
+    # Django Default.
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # Wagtail Default.
     'compressor.finders.CompressorFinder',
 )
 
