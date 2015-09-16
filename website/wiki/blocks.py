@@ -1,10 +1,16 @@
 from django.utils.safestring import mark_safe
+from django.conf import settings
+from django.utils.html import format_html
+
 from markdown import markdown
+
 from pygments import highlight
 from pygments.formatters import get_formatter_by_name
 from pygments.lexers import get_lexer_by_name
 
 from wagtail.wagtailcore import blocks
+from wagtail.wagtailcore import hooks
+
 
 
 class CodeBlock(blocks.StructBlock):
@@ -12,6 +18,10 @@ class CodeBlock(blocks.StructBlock):
     Code Highlighting Block
 
     Originally from https://gist.github.com/frankwiles/74a882f16704db9caa27
+
+
+    The biggest problem here is that we cannot easily provide page links.
+
     """
     LANGUAGE_CHOICES = (
         ('python', 'Python'),
@@ -64,3 +74,22 @@ class MarkDownBlock(blocks.TextBlock):
             ],
         )
         return mark_safe(md)
+
+
+
+
+#class SingleImageBlock(blocks.ImageChooserBlock)
+#    
+#    DISPLAY_CHOICES = (
+#        ('left', 'Left Align'),
+#        ('middle', 'Center'),
+#        ('righ', 'Right'),
+#    )
+
+
+# the following possibly should define wiki_admin.css and provide for all blocks.
+
+@hooks.register('insert_editor_css')
+def markdown_editor_css():
+    return format_html('<link rel="stylesheet" href="' \
+    + settings.STATIC_URL + 'wiki/wagtail/markdown.css">')

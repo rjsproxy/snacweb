@@ -22,6 +22,9 @@ INSTALLED_APPS = (
     'taggit',
     'compressor',
     'modelcluster',
+    # Putting wiki first so it can overide wagtail static files.
+    'crispy_forms',
+    'wiki',
     # Wagtail default apps.
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',
@@ -35,10 +38,8 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
     # 
-    'crispy_forms',
     # demo has search, home, blog, article.
     # 'layout', rolled site-wide things into wiki
-    'wiki',
     'form',
 )
 
