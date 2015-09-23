@@ -6,6 +6,7 @@ from wagtail.wagtailcore.fields import StreamField
 from wagtail.wagtailcore import blocks, hooks
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailembeds.blocks import EmbedBlock
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -13,7 +14,7 @@ from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 
-from .blocks import CodeBlock, MarkDownBlock
+from .blocks import ImageBlock, CodeBlock, MarkDownBlock
 
 
 #class WikiPageFeedBlock(blocks.StructBlock):
@@ -62,12 +63,21 @@ class WikiPage(Page):
     content = StreamField([
         ('container', blocks.StreamBlock([
             ('rich_text', blocks.RichTextBlock(
-                label='Rich Text')),
+                label='Rich Text',
+            )),
             ('news_feed', blocks.PageChooserBlock(
                 label='News Feed',
-                template='wiki/blocks/news_feed.html')),
-            ('markdown', MarkDownBlock()),
-            ('code_block', CodeBlock()),
+                template='wiki/blocks/news_feed.html',
+            )),
+            ('embed', EmbedBlock(
+                label='Embed',
+            )),
+            ('image', ImageBlock(
+                label='Image',
+            )),
+
+            #('markdown', MarkDownBlock()),
+            #('code_block', CodeBlock()),
         #], template='wiki/blocks/container.html')),
         ])),
     ])
@@ -127,7 +137,7 @@ def editor_js():
             'hallowagtaildoclink': {},
             // The following show even if not listed. CSS is used to hide the buttons.
             //'hallohr': {},
-            //'hallowagtaillink': {},
+            'hallowagtaillink': {},
             //'hallowagtailimage': {},
             'hallorequireparagraphs': {},
         };

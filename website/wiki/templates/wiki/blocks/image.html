@@ -1,0 +1,21 @@
+{% load wagtailimages_tags %}
+
+{% if self.size == 'tiny' %}
+{% image self.image max-100x100 as temp_image %}
+{% elif self.size == 'small' %}
+{% image self.image max-200x200 as temp_image %}
+{% elif self.size == 'medium' %}
+{% image self.image max-400x400 as temp_image %}
+{% elif self.size == 'large' %}
+{% image self.image max-800x800 as temp_image %}
+{% else %}
+{% image self.image original as temp_image %}
+{% endif %}
+
+<div class="block-image">
+{% if self.shape or self.align %}
+<img {{ temp_image.attrs }} class="{{ self.shape }} {{ self.align }}"/>
+{% else %}
+<img {{ temp_image.attrs }} />
+{% endif %}
+</div>

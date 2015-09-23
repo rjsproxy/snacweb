@@ -11,6 +11,36 @@ from pygments.lexers import get_lexer_by_name
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore import hooks
 
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+
+class ImageBlock(blocks.StructBlock):
+
+    ALIGN_CHOICES = (
+        ('pull-left', 'Pull Left'),
+        ('pull-right', 'Pull Right'),
+        ('center-block', 'Center Block'),
+    )
+
+    SHAPE_CHOICES = (
+        ('img-rounded', 'Rounded'),
+        ('img-circle', 'Circle'),
+        ('img-thumbnail', 'Thumbnail'),
+    )
+
+    SIZE_CHOICES = (
+        ('tiny', 'Tiny'),
+        ('small', 'Small'),
+        ('medium', 'Medium'),
+        ('large', 'Large'),
+    )
+
+    align = blocks.ChoiceBlock(choices=ALIGN_CHOICES, required=False)
+    shape = blocks.ChoiceBlock(choices=SHAPE_CHOICES, required=False)
+    size = blocks.ChoiceBlock(choices=SIZE_CHOICES, required=False)
+    image = ImageChooserBlock()
+    
+    class Meta:
+        template = 'wiki/blocks/image.html'
 
 
 class CodeBlock(blocks.StructBlock):
