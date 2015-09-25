@@ -11,15 +11,25 @@ var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 var bower = require('gulp-bower');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var minify = require('gulp-minify-css');
 
-//var sass = require("gulp-sass");
+var sass = require("gulp-sass");
 //var filter = require('gulp-filter');
 //var sourcemaps = require('gulp-sourcemaps');
 //var shell = require('gulp-shell'); 
 
+
+
+
+
+
 var config = {
     bowerPath: './bower_components',
-    staticPath: './static'
+    staticPath: './static',
+    buildPath: 'dist',
 }
 
 var sassfiles = 'website/wiki/templates/wiki/base.scss';
@@ -31,61 +41,80 @@ function errorHandler (error) {
     this.emit('end');
 }
 
-// Install Bower Packages.
 
 gulp.task('bower', function() { 
-    return bower()
-        .pipe(gulp.dest(config.bowerPath)); 
+    // Install Bower Packages.
+    return bower().pipe(gulp.dest(config.bowerPath)); 
 });
 
-// Fonts.
+
+// fonts.
+
+var fontSources = [
+    config.bowerPath + '/fontawesome/fonts/**/*',
+    config.bowerPath + '/bootstrap-sass/assets/fonts/**/*',
+]
 
 gulp.task('fonts', function() { 
-    return gulp.src([
-            config.bowerPath + '/fontawesome/fonts/**/*',
-            config.bowerPath + '/bootstrap-sass/assets/fonts/**/*',
-        ])
+    return gulp.src(fontSources)
         .pipe(gulp.dest(config.staticPath + '/fonts')); 
 });
 
-// Javascript.
+gulp.task('fonts-build', function() { 
+    return gulp.src(fontSources)
+        .pipe(gulp.dest(config.buildPath + '/fonts')); 
+});
+
+// Javascript hacks.
 
 gulp.task('js', function() {  
     return gulp.src([
             config.bowerPath + '/jquery/dist/jquery.js',
-            config.bowerPath + '/holderjs/holder.js',
+            // config.bowerPath + '/holderjs/holder.js',
             config.bowerPath + '/bootstrap-sass/assets/javascripts/bootstrap.js'
         ])
         .pipe(concat('snac.js'))
-        .pipe(gulp.dest(config.staticPath))
+        .pipe(uglify())
+        .pipe(gulp.dest(config.staticPath));
+});
+
+gulp.task('js-build', ['js'], function() {
+    return gulp.src(config.staticPath + '/snac.js')
+        .pipe(gulp.dest('dist'));
 });
 
 // Convert Sass files to CSS.
 
-gulp.task('sass', function () {
+gulp.task('css', function () {
     return gulp.src([
             'website/wiki/templates/wiki/base.scss',
         ])
-        .pipe($.sourcemaps.init())
-        .pipe($.sass({
-            outputStyle: 'nested',
-            precision: 10,
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'compressed',
+            //outputStyle: 'nested',
+            //precision: 10,
             includePaths: ['.']
-            //,
-            //onError: console.error.bind(console, 'Sass error:')
         })).on('error', errorHandler)
         .pipe($.postcss([
             require('autoprefixer-core')({browsers: ['last 2 version']})
         ]))
-        .pipe($.sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(config.staticPath + '/wiki'))
-        //.pipe(shell([
-        //    'virtualenv/bin/python website/manage.py collectstatic --noinput'
-        //]))
         .pipe(reload({stream: true}));
 });
 
+gulp.task('css-build', ['css'], function () {
+    return gulp.src(config.staticPath + '/wiki/base.css')
+        .pipe(minify())
+        //.pipe(rename({ extname: '.min.css' }))
+        .pipe(gulp.dest(config.buildPath + '/wiki'))
+});
 
+
+        //.pipe(shell([
+        //    'virtualenv/bin/python website/manage.py collectstatic --noinput'
+        //]))
 /* alternative style suggested by autoprefixer
 gulp.task('autoprefixer', function () {
     var postcss      = require('gulp-postcss');
@@ -100,10 +129,10 @@ gulp.task('autoprefixer', function () {
 });
 */
 
-gulp.task('bootstrap', function(){
-    return gulp.src('index.js')
-        .pipe(gulp.dest('dist'));
-});
+//gulp.task('bootstrap', function(){
+//    return gulp.src('index.js')
+//        .pipe(gulp.dest('dist'));
+//});
 
 
 //gulp.task('serve', function() {

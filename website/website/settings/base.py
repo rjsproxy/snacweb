@@ -102,9 +102,11 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-#STATICFILES_DIRS = (
-#    os.path.join(SITE_DIR, 'static'),
-#)
+# Files built with gulp are added to a dist directory.
+
+STATICFILES_DIRS = (
+    os.path.join(ROOT_DIR, 'dist'),
+)
 
 STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 STATIC_URL = '/static/'
