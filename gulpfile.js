@@ -32,7 +32,7 @@ var config = {
     buildPath: 'dist',
 }
 
-var sassfiles = 'website/wiki/templates/wiki/base.scss';
+var sassfiles = 'website/wiki/templates/wiki/*.scss';
 
 // RJS: investigate method to "notify" via browser?
 
@@ -137,13 +137,13 @@ gulp.task('autoprefixer', function () {
 
 //gulp.task('serve', function() {
 //gulp.task('serve', ['sass'], function() {
-gulp.task('default', ['sass'], function() {
+gulp.task('default', ['css'], function() {
 
     browserSync.init({
         notify: false,
         //proxy: '203.28.246.145:9898',
-        proxy: '127.0.0.1:3002',
-        //proxy: 'charlie.snac.unimelb.edu.au:3002',
+        //proxy: '127.0.0.1:3002',
+        proxy: 'charlie.snac.unimelb.edu.au:3002',
         //proxy: '192.168.100.9:8000',
     });
 
@@ -154,7 +154,7 @@ gulp.task('default', ['sass'], function() {
     ]).on('change', reload);
 
     // Watch the sassfiles and run sass job on change.
-    gulp.watch(sassfiles, ['sass']);
+    gulp.watch(sassfiles, ['css']);
 
 }); 
 

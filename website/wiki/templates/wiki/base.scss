@@ -10,21 +10,12 @@ body {
     height: 100%;
 }
 
-
-
-
 /* Landing Page Style */
 
 @import 'home.scss';
 @import 'pygment.scss';
 
-
 /* Wagtail Bootstrap Integration */
-
-.page-header {
-    // @extend .text-right;
-    margin-top: 70px;
-}
 
 .block-container {
     @extend .container;

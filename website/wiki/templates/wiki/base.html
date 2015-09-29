@@ -9,7 +9,13 @@
 <meta name="description" content="St Mary's Newman Academic Centre">
 <meta name="author" content="Robert Shelton">
 {% block head-title %}
+
+{% if self.seo_title %}
+<title>{{ self.seo_title }}</title>
+{% else %}
 <title>SNAC</title>
+{% endif %}
+
 {% endblock %}
 <link rel="stylesheet" type="text/css" href="{% static 'wiki/base.css' %}" />
 {% block head-style %}
@@ -28,8 +34,6 @@
 </div>
 {% endblock %}
 
-
-
 {% block body-content %}
 {% endblock %}
 
@@ -45,11 +49,11 @@ St Mary's Newman<br>
 Academic Centre<br>
 887 Swanston St<br>
 Parkville VIC 3052<br>
-<a href="mailto:library@snac.unimelb.edu.au"><i class="fa fa-envelope"></i></a>
+<a href="//contact"><i class="fa fa-envelope"></i></a>
 <a href="https://www.facebook.com/snacunimelb"><i class="fa fa-facebook-official"></i></a>
 <a href="https://www.youtube.com/user/snacademicentre"><i class="fa fa-youtube"></i></a>
-<a href="https://plus.google.com/106322446685870365554/about"><i class="fa fa-google-plus"></i></a>
 <!--
+<a href="https://plus.google.com/106322446685870365554/about"><i class="fa fa-google-plus"></i></a>
 <a href=""><i class="fa fa-rss"></i></a>
 -->
 </p>

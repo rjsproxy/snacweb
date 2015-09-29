@@ -22,9 +22,11 @@
 
 */
 
-
 .home-wrapper {
-    position: relative; // allow childrent to be absolute.
+    position: absolute; // allow childrent to be absolute.
+    top: 0;
+    left: 0;
+
     width: 100%;
     height: 100%; // For at least Firefox 
     min-height: 100%;
