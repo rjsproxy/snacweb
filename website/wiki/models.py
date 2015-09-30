@@ -75,8 +75,7 @@ class WikiPage(Page):
             ('image', ImageBlock(
                 label='Image',
             )),
-
-            #('markdown', MarkDownBlock()),
+            ('markdown', MarkDownBlock()),
             #('code_block', CodeBlock()),
         #], template='wiki/blocks/container.html')),
         ])),
