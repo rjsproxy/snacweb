@@ -40,3 +40,8 @@ div.responsive-object {
     }
 }
 
+div.block-markdown > table {
+    @extend .table;
+    @extend .table-striped;
+    @extend .table-bordered;
+}
