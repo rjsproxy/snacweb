@@ -2,8 +2,8 @@
 Deployment
 ==========
 
-Production
-----------
+Production Deployment
+---------------------
 
 1. Clone the repository. ::
 
@@ -32,3 +32,24 @@ $ pip install -r requirements/prod.txt
 
 6. Configure web server.
 
+Production Update
+-----------------
+
+
+
+git pull
+
+
+make migrations to check
+
+
+
+make migrate to check
+
+
+
+
+make collectstatic
+
+
+touch wsgi
