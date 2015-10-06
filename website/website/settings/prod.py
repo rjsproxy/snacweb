@@ -31,4 +31,5 @@ CSRF_COOKIE_HTTPONLY = True
 # Block the resource from loading in a frame.
 X_FRAME_OPTIONS = 'DENY'
 
-
+# Expire session when browser closes.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
