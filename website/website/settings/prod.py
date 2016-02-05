@@ -5,10 +5,10 @@ DEBUG = False
 # Request HTTP strict-transport-security for 7 days.
 #SECURE_HSTS_SECONDS = 604800
 # setting to 5 mins initially.
-SECURE_HSTS_SECONDS = 300
+#SECURE_HSTS_SECONDS = 300
 
 # Adds the includeSubDomains tag to HSTS header.
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 # Set "X-Content-Type-Options: nosniff" header on all responses.
 SECURE_CONTENT_TYPE_NOSNIFF = True
